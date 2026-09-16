@@ -55,7 +55,7 @@ function ContactPage() {
           </div>
         </header>
 
-        <ContactSection />
+        <ContactSection withHeading={false} />
       </main>
       <SiteFooter />
       <WhatsAppButton />
