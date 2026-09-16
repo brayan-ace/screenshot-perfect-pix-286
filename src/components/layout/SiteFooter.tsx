@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "@/components/brand/Logo";
+import { FacebookIcon, LinkedInIcon } from "@/components/brand/SocialIcons";
 import { contactConfig, navItems, siteConfig, socialConfig } from "@/data/site";
 
 export function SiteFooter() {
@@ -41,26 +42,28 @@ export function SiteFooter() {
               <li>{contactConfig.email}</li>
               <li>{contactConfig.address.join(", ")}</li>
             </ul>
-            <ul className="mt-5 flex flex-wrap gap-4">
-              {socialConfig.map((s) => (
-                <li key={s.label}>
-                  {s.href ? (
-                    <a
-                      href={s.href}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="label-tech text-muted-foreground transition-colors hover:text-primary"
-                    >
-                      {s.label}
-                    </a>
-                  ) : (
-                    <span className="label-tech text-muted-foreground/60">
-                      {s.label} [VERIFY LINK]
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <a
+                href="https://web.facebook.com/Mungofishfarm/?_rdc=1&_rdr#"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Facebook (Moungo Fish Farm)"
+                className="group flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface/70 shadow-sm transition-all duration-300 hover:scale-105 hover:border-[#1877F2]/60 hover:bg-[#1877F2]/10 hover:shadow-[0_0_20px_rgba(24,119,242,0.35)]"
+                title="Follow Moungo Fish Farm on Facebook"
+              >
+                <FacebookIcon className="h-7 w-7 transition-transform duration-300 group-hover:scale-110" />
+              </a>
+              <a
+                href="https://cm.linkedin.com/company/moungo-fish-farm"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="LinkedIn (Moungo Fish Farm)"
+                className="group flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface/70 shadow-sm transition-all duration-300 hover:scale-105 hover:border-[#0A66C2]/60 hover:bg-[#0A66C2]/10 hover:shadow-[0_0_20px_rgba(10,102,194,0.35)]"
+                title="Connect with Moungo Fish Farm on LinkedIn"
+              >
+                <LinkedInIcon className="h-7 w-7 transition-transform duration-300 group-hover:scale-110" />
+              </a>
+            </div>
           </div>
         </div>
 

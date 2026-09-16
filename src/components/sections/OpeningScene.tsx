@@ -49,15 +49,15 @@ export function OpeningScene() {
     };
   }, []);
 
-  const fishOut = smoothstep(0.25, 0.72, p);
-  const farmIn = smoothstep(0.32, 0.78, p);
-  const textIn = smoothstep(0.58, 0.92, p);
-  const chromeOut = smoothstep(0, 0.22, p);
+  const fishOut = smoothstep(0.12, 0.62, p);
+  const farmIn = smoothstep(0.22, 0.72, p);
+  const textIn = smoothstep(0.42, 0.84, p);
+  const chromeOut = smoothstep(0, 0.16, p);
 
   const move = (value: string) => (reduced ? undefined : value);
 
   return (
-    <div ref={wrapRef} className="relative h-[240vh]">
+    <div ref={wrapRef} className="relative h-[135vh] sm:h-[220vh]">
       <section
         aria-label="Entering Moungo Fish Farm"
         className="sticky top-0 h-screen overflow-hidden bg-background"
@@ -71,31 +71,33 @@ export function OpeningScene() {
           }}
         />
 
-        {/* the fish */}
+        {/* the fish — horizontally and vertically centered with optical compensation on mobile */}
         <div
-          className="absolute inset-0 flex items-center justify-center"
+          className="pointer-events-none absolute inset-0 flex items-center justify-center"
           style={{
             opacity: 1 - fishOut,
             transform: move(
-              `translate3d(${-fishOut * 14}%, 0, 0) scale(${1 + fishOut * 0.5})`,
+              `translate3d(${-fishOut * 14}%, 0, 0) scale(${1 + fishOut * 0.4})`,
             ),
           }}
         >
-          <img
-            src={images.heroTilapia.src}
-            alt={images.heroTilapia.alt}
-            width={images.heroTilapia.width}
-            height={images.heroTilapia.height}
-            fetchPriority="high"
-            className="animate-drift h-auto w-[150%] max-w-none object-contain sm:w-[100%] lg:w-[78%]"
-            style={{
-              mixBlendMode: "screen",
-              maskImage:
-                "radial-gradient(ellipse 62% 58% at 50% 50%, #000 42%, transparent 78%)",
-              WebkitMaskImage:
-                "radial-gradient(ellipse 62% 58% at 50% 50%, #000 42%, transparent 78%)",
-            }}
-          />
+          <div className="relative flex w-full items-center justify-center -translate-x-[4%] sm:translate-x-0 -translate-y-2 sm:translate-y-0">
+            <img
+              src={images.heroTilapia.src}
+              alt={images.heroTilapia.alt}
+              width={images.heroTilapia.width}
+              height={images.heroTilapia.height}
+              fetchPriority="high"
+              className="animate-drift h-auto w-[110%] max-w-[430px] object-contain sm:w-[100%] sm:max-w-none lg:w-[78%]"
+              style={{
+                mixBlendMode: "screen",
+                maskImage:
+                  "radial-gradient(ellipse 62% 58% at 50% 50%, #000 42%, transparent 78%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 62% 58% at 50% 50%, #000 42%, transparent 78%)",
+              }}
+            />
+          </div>
         </div>
 
         {/* the farm emerging */}
@@ -149,26 +151,41 @@ export function OpeningScene() {
           </div>
         </div>
 
-        {/* opening chrome */}
+        {/* opening chrome — on mobile, 'Scroll to enter' is dead-center so it never collides with the WhatsApp button */}
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 px-5 pb-8 sm:px-10"
           style={{ opacity: 1 - chromeOut }}
         >
-          <div className="mx-auto flex max-w-7xl items-end justify-between gap-6">
+          <div className="relative mx-auto flex max-w-7xl items-end justify-between gap-4 sm:gap-6">
             <p className="label-tech leading-relaxed text-foreground/70">
               Mungo River
               <br />
               Cameroon
             </p>
-            <div className="flex flex-col items-center gap-3">
-              <span className="label-tech text-foreground/70">Scroll to enter</span>
+            <button
+              type="button"
+              onClick={() => {
+                if (wrapRef.current) {
+                  const travel = wrapRef.current.offsetHeight - window.innerHeight;
+                  window.scrollTo({
+                    top: wrapRef.current.offsetTop + travel + 10,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+              className="pointer-events-auto absolute left-1/2 -translate-x-1/2 bottom-0 flex cursor-pointer flex-col items-center gap-2.5 transition-transform duration-300 hover:scale-105 active:scale-95 sm:static sm:translate-x-0"
+              aria-label="Scroll to enter site"
+            >
+              <span className="label-tech text-foreground/75 tracking-wider transition-colors hover:text-primary">
+                Scroll to enter
+              </span>
               <span
                 aria-hidden="true"
-                className="relative block h-10 w-px overflow-hidden bg-foreground/20"
+                className="relative block h-8 w-px overflow-hidden bg-foreground/25 sm:h-10"
               >
                 <span className="animate-scroll-cue absolute inset-x-0 top-0 block h-4 bg-primary" />
               </span>
-            </div>
+            </button>
             <p className="label-tech hidden text-right leading-relaxed text-foreground/70 sm:block">
               {siteConfig.shortName}
               <br />

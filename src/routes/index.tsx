@@ -10,16 +10,15 @@ import {
   StorySection,
 } from "@/components/sections/StoryAndSystem";
 import {
-  AvailabilitySection,
   HarvestSection,
   ProductsSection,
 } from "@/components/sections/CommerceSections";
 import {
   FutureSection,
   ImpactSection,
-  JournalSection,
   TrainingSection,
 } from "@/components/sections/PeopleSections";
+import { NewsletterSection } from "@/components/sections/NewsletterSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { useReveal } from "@/hooks/useReveal";
 
@@ -57,8 +56,7 @@ function Home() {
         <TrainingSection />
         <ImpactSection />
         <HarvestSection />
-        <AvailabilitySection />
-        <JournalSection />
+        <NewsletterSection />
         <FutureSection />
         <ContactSection />
       </main>
