@@ -18,17 +18,27 @@ const channels = [
   },
 ];
 
-export function ContactSection({ withMap = true }: { withMap?: boolean }) {
+export function ContactSection({
+  withMap = true,
+  withHeading = true,
+}: {
+  withMap?: boolean;
+  withHeading?: boolean;
+}) {
   return (
     <section id="contact" className="scroll-mt-24 bg-surface px-5 py-24 sm:px-10">
       <div className="mx-auto max-w-7xl">
         <div className="reveal max-w-3xl">
-          <SectionLabel index="12">Contact</SectionLabel>
-          <h2 className="display-lg mt-6">
-            Let's build
-            <br />
-            something that grows.
-          </h2>
+          {withHeading ? (
+            <>
+              <SectionLabel index="12">Contact</SectionLabel>
+              <h2 className="display-lg mt-6">
+                Let's build
+                <br />
+                something that grows.
+              </h2>
+            </>
+          ) : null}
           <p className="mt-6 max-w-lg text-base text-muted-foreground">
             Fingerlings, table-size fish, feed or farm support — tell us what you need and we
             will answer plainly.
