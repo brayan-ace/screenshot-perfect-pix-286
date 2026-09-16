@@ -87,8 +87,14 @@ export function OpeningScene() {
             width={images.heroTilapia.width}
             height={images.heroTilapia.height}
             fetchPriority="high"
-            className="animate-drift h-auto w-[132%] max-w-none object-contain sm:w-[92%] lg:w-[72%]"
-            style={{ mixBlendMode: "screen" }}
+            className="animate-drift h-auto w-[150%] max-w-none object-contain sm:w-[100%] lg:w-[78%]"
+            style={{
+              mixBlendMode: "screen",
+              maskImage:
+                "radial-gradient(ellipse 62% 58% at 50% 50%, #000 42%, transparent 78%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 62% 58% at 50% 50%, #000 42%, transparent 78%)",
+            }}
           />
         </div>
 
