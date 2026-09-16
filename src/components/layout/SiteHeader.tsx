@@ -54,7 +54,7 @@ function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) 
               <li key={item.index}>
                 <Link
                   to={item.to}
-                  hash={item.hash}
+                  {...(item.hash ? { hash: item.hash } : {})}
                   onClick={onClose}
                   style={{ transitionDelay: open ? `${80 + i * 45}ms` : "0ms" }}
                   className={cn(

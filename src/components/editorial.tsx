@@ -63,7 +63,7 @@ export function ArrowLink({
   }
 
   return (
-    <Link to={to ?? "/"} hash={hash} className={classes}>
+    <Link to={to ?? "/"} {...(hash ? { hash } : {})} className={classes}>
       {content}
     </Link>
   );

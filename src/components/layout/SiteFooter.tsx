@@ -24,7 +24,7 @@ export function SiteFooter() {
                 <li key={item.index}>
                   <Link
                     to={item.to}
-                    hash={item.hash}
+                    {...(item.hash ? { hash: item.hash } : {})}
                     className="text-foreground/80 transition-colors hover:text-primary"
                   >
                     {item.label}
