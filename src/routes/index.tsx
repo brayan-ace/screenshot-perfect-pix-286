@@ -1,24 +1,69 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { OpeningScene } from "@/components/sections/OpeningScene";
+import {
+  CagesSection,
+  EcosystemSection,
+  SpeciesSection,
+  StorySection,
+} from "@/components/sections/StoryAndSystem";
+import {
+  AvailabilitySection,
+  HarvestSection,
+  ProductsSection,
+} from "@/components/sections/CommerceSections";
+import {
+  FutureSection,
+  ImpactSection,
+  JournalSection,
+  TrainingSection,
+} from "@/components/sections/PeopleSections";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { useReveal } from "@/hooks/useReveal";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "Moungo Fish Farm | Aquaculture in Cameroon";
+const description =
+  "Tilapia and catfish aquaculture from the Mungo, Cameroon. Fingerlings, table-size fish, feed and inputs, and training for a growing generation of fish farmers.";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
+  useReveal();
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <SiteHeader transparent />
+      <main>
+        <OpeningScene />
+        <StorySection />
+        <EcosystemSection />
+        <SpeciesSection />
+        <CagesSection />
+        <ProductsSection />
+        <TrainingSection />
+        <ImpactSection />
+        <HarvestSection />
+        <AvailabilitySection />
+        <JournalSection />
+        <FutureSection />
+        <ContactSection />
+      </main>
+      <SiteFooter />
+      <WhatsAppButton />
+    </>
   );
 }
